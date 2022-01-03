@@ -21,7 +21,7 @@
 			"name": "Attach to SAM CLI",
 			"address": "localhost",
 			"port": 8065,
-			"localRoot": "${workspaceRoot}/hello-world",
+			"localRoot": "${workspaceRoot}",
 			"remoteRoot": "/var/task",
 			"protocol": "inspector",
 			"stopOnEntry": false
