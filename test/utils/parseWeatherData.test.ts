@@ -20,7 +20,14 @@ const test = [
         visibility: 10000,
         wind_speed: 6.71,
         wind_deg: 330,
-        weather: [[Object]],
+        weather: [
+            {
+                id: 600,
+                main: 'Snow',
+                description: 'light snow',
+                icon: '13n',
+            },
+        ],
     },
     {
         dt: 1641132000,
@@ -35,7 +42,20 @@ const test = [
         wind_speed: 4.92,
         wind_deg: 340,
         wind_gust: 10.28,
-        weather: [[Object], [Object]],
+        weather: [
+            {
+                id: 600,
+                main: 'Snow',
+                description: 'light snow',
+                icon: '13d',
+            },
+            {
+                id: 701,
+                main: 'Mist',
+                description: 'mist',
+                icon: '50d',
+            },
+        ],
     },
 ];
 
@@ -49,7 +69,19 @@ describe('parseWeatherData', function () {
         const hourlyData = data.hourly as HourlyDataBlock[];
         const result = condenseHourlyData(hourlyData, start, end);
         expect(result.cloudCover).to.be.equal(90);
+        expect(result.dewPoint).to.be.equal(-11.84);
+        expect(result.heatIndex).to.be.undefined;
+        expect(result.humidity).to.be.equal(88);
+        expect(result.maxPressure).to.be.equal(1022);
+        expect(result.minPressure).to.be.equal(1021);
         expect(result.maxTemp).to.be.equal(-10.39);
         expect(result.minTemp).to.be.equal(-10.43);
+        expect(result.precip).to.be.undefined;
+		expect(result.windChill).to.be.equal(-17.43)
+		expect(result.windDirection).to.be.equal(335)
+		expect(result.windGust).to.be.equal(10.28)
+		expect(result.windSpeed).to.be.equal(6.71)
+		expect(result.uvi).to.be.equal(.09)
+		expect(result.visibility).to.be.equal(4828)
     });
 });

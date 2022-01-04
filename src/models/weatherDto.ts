@@ -1,20 +1,18 @@
 export class WeatherDto {
-    windDirection?: number
-    cloudCover?: number
-    minTemp?: number
-    maxTemp?: number
-    precip?: number
-    solarRadiation?: number
+	cloudCover?: number
+    conditions: string[] = []
     dewPoint?: number
-    humidity?: number
-    visibility?: number
-    windSpeed?: number
     heatIndex?: number
-    snowDepth?: number
+    humidity?: number
+    precip?: number
     maxPressure?: number
     minPressure?: number
-    snow?: number
-    windGust?: number
-    conditions: string[] = []
+    maxTemp?: number
+    minTemp?: number
+    visibility?: number
     windChill?: number
+    windDirection?: number
+    windGust?: number
+    windSpeed?: number
+    uvi?: number
 }
