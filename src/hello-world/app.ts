@@ -21,10 +21,9 @@ export const lambdaHandler = async (
 ) => {
     try {
         // const ret = await axios(url);
-        console.log(process.env)
         response = {
             statusCode: 200,
-            body: JSON.stringify(process.env),
+            body: event.body,
             // body: event.body,
             // body: JSON.stringify({
             //     message: 'hello world',

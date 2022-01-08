@@ -1,0 +1,44 @@
+[
+	{
+		"dt": 1641128400,
+		"temp": 95,
+		"feels_like": 101,
+		"pressure": 1021,
+		"humidity": 88,
+		"dew_point": 83,
+		"uvi": 9.5,
+		"clouds": 90,
+		"visibility": 10000,
+		"wind_speed": 6.71,
+		"wind_deg": 330,
+		"weather": [
+			{
+				"id": 800,
+				"main": "Clear",
+				"description": "clear sky",
+				"icon": "01d"
+			}
+		]
+	},
+	{
+		"dt": 1641132000,
+		"temp": 95,
+		"feels_like": 100,
+		"pressure": 1021,
+		"humidity": 88,
+		"dew_point": 83,
+		"uvi": 9.5,
+		"clouds": 90,
+		"visibility": 10000,
+		"wind_speed": 6.71,
+		"wind_deg": 330,
+		"weather": [
+			{
+				"id": 800,
+				"main": "Clear",
+				"description": "clear sky",
+				"icon": "01d"
+			}
+		]
+	}
+]

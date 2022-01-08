@@ -1,9 +1,9 @@
 interface Alert {
-    sender_name: string
-    event: string
-    start: number
-    end: number
-    description: string
+    sender_name: string;
+    event: string;
+    start: number;
+    end: number;
+    description: string;
 }
 
 enum Condition {
@@ -70,117 +70,117 @@ enum Condition {
 }
 
 interface CurrentDataBlock extends DataBlock {
-    sunrise: number
-    sunset: number
-    temp: number
-    feels_like: number
-    visibility: number
-    uvi: number
-    rain?: PrecipitationDataPoint
-    snow?: PrecipitationDataPoint
+    sunrise: number;
+    sunset: number;
+    temp: number;
+    feels_like: number;
+    visibility: number;
+    uvi: number;
+    rain?: PrecipitationDataPoint;
+    snow?: PrecipitationDataPoint;
 }
 
 interface DailyDataBlock extends DataBlock {
-    sunrise: number
-    sunset: number
-    temp: TemperatureBlock
-    feels_like: TemperatureDayBlock
-    uvi: number
-    rain?: number
-    snow?: number
-    pop: number
+    sunrise: number;
+    sunset: number;
+    temp: TemperatureBlock;
+    feels_like: TemperatureDayBlock;
+    uvi: number;
+    rain?: number;
+    snow?: number;
+    pop: number;
 }
 
 interface TemperatureDayBlock {
-    morn: number
-    day: number
-    eve: number
-    night: number
+    morn: number;
+    day: number;
+    eve: number;
+    night: number;
 }
 
 interface TemperatureBlock extends TemperatureDayBlock {
-    min: number
-    max: number
+    min: number;
+    max: number;
 }
 
 interface PrecipitationDataPoint {
-    '1h': number
+    '1h': number;
 }
 
 interface DataBlock {
-    dt: number
-    temp: number | TemperatureBlock
-    feels_like: number | TemperatureDayBlock
-    pressure: number
-    humidity: number
-    dew_point: number
-    clouds: number
-    visibility?: number
-    wind_speed: number
-    wind_gust?: number
-    wind_deg: number
-    pop?: number
-    rain?: PrecipitationDataPoint | number
-    snow?: PrecipitationDataPoint | number
-    weather: WeatherBlock[]
-    uvi?: number
+    dt: number;
+    temp: number | TemperatureBlock;
+    feels_like: number | TemperatureDayBlock;
+    pressure: number;
+    humidity: number;
+    dew_point: number;
+    clouds: number;
+    visibility?: number;
+    wind_speed: number;
+    wind_gust?: number;
+    wind_deg: number;
+    pop?: number;
+    rain?: PrecipitationDataPoint | number;
+    snow?: PrecipitationDataPoint | number;
+    weather: WeatherBlock[];
+    uvi?: number;
 }
 
 interface Forecast {
-    lat: number
-    lon: number
-    timezone: string
-    timezone_offset: number
-    current?: CurrentDataBlock
-    minutely?: MinutelyDataBlock[]
-    hourly?: HourlyDataBlock[]
-    daily?: DailyDataBlock[]
-    alerts?: Alert[]
+    lat: number;
+    lon: number;
+    timezone: string;
+    timezone_offset: number;
+    current?: CurrentDataBlock;
+    minutely?: MinutelyDataBlock[];
+    hourly?: HourlyDataBlock[];
+    daily?: DailyDataBlock[];
+    alerts?: Alert[];
 }
 
 interface FullForecast extends Forecast {
-    current: CurrentDataBlock
-    minutely: MinutelyDataBlock[]
-    hourly: HourlyDataBlock[]
-    daily: DailyDataBlock[]
-    alerts: Alert[]
+    current: CurrentDataBlock;
+    minutely: MinutelyDataBlock[];
+    hourly: HourlyDataBlock[];
+    daily: DailyDataBlock[];
+    alerts: Alert[];
 }
 
 interface CurrentForecast extends Forecast {
-    current: CurrentDataBlock
+    current: CurrentDataBlock;
 }
 
 interface WeekForecast extends Forecast {
-    daily: DailyDataBlock[]
+    daily: DailyDataBlock[];
 }
 
 interface DayForecast extends Forecast {
-    hourly: HourlyDataBlock[]
+    hourly: HourlyDataBlock[];
 }
 
 interface HourForecast extends Forecast {
-    hourly: HourlyDataBlock[]
+    hourly: HourlyDataBlock[];
 }
 
 export interface HourlyDataBlock extends DataBlock {
-    temp: number
-    feels_like: number
-    rain?: PrecipitationDataPoint
-    snow?: PrecipitationDataPoint
-    pop?: number
-    visibility: number
+    temp: number;
+    feels_like: number;
+    rain?: PrecipitationDataPoint;
+    snow?: PrecipitationDataPoint;
+    pop?: number;
+    visibility: number;
 }
 
 interface MinutelyDataBlock {
-    dt: number
-    precipitation: number
+    dt: number;
+    precipitation: number;
 }
 
-interface WeatherBlock {
-    id: Condition
-    main: string
-    description: string
-    icon: WeatherIcon
+export interface WeatherBlock {
+    id: Condition;
+    main: string;
+    description: string;
+    icon: WeatherIcon;
 }
 
 enum WeatherIcon {
@@ -212,14 +212,21 @@ enum WeatherIcon {
     MistNight = '50n',
 }
 
-const ICON_EXTENSION = '.png'
-const LARGER_ICON = '@2x'
+const ICON_EXTENSION = '.png';
+const LARGER_ICON = '@2x';
 
 export interface WeatherPeriodDataOpenWeather {
-    lat: number
-    lon: number
-    timezone: string
-    timezone_offset: number
-    current: CurrentDataBlock
-    hourly: HourlyDataBlock[]
+    lat: number;
+    lon: number;
+    timezone: string;
+    timezone_offset: number;
+    current: CurrentDataBlock;
+    hourly: HourlyDataBlock[];
+}
+
+export interface IWeatherPeriodParams {
+    lat: number;
+    lon: number;
+    dt: number;
+    dtEnd: number;
 }

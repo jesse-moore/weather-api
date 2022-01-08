@@ -1,5 +1,6 @@
 {
 	"HelloWorldFunction": {
-		"VIRTUAL_CROSSING_KEY": ""
+		"VISUAL_CROSSING_KEY": "",
+		"OPEN_WEATHER_MAP_KEY": ""
 	}
 }

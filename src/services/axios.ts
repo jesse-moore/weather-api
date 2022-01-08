@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { VC_KEY } from '../config'
+import axios from 'axios';
+import { VC_KEY, OWM_KEY } from '../config';
 
 const instance = axios.create({
     baseURL:
@@ -13,7 +13,17 @@ const instance = axios.create({
         includeAstronomy: true,
         key: VC_KEY,
     },
-})
+});
+
+export const openWeather = axios.create({
+    baseURL: 'https://api.openweathermap.org/data/2.5/onecall/timemachine',
+    timeout: 1000,
+    params: {
+        units: 'metric',
+        appid: OWM_KEY,
+    },
+});
+
 // dayStartTime=${startTime}
 // dayEndTime=${endTime}
 // startDateTime=${startDate}
@@ -27,19 +37,19 @@ export default async function fetchWeather({
     endDate,
     endTime,
 }: {
-    lat: number
-    lng: number
-    startDate: string
-    startTime: string
-    endDate: string
-    endTime: string
+    lat: number;
+    lng: number;
+    startDate: string;
+    startTime: string;
+    endDate: string;
+    endTime: string;
 }): Promise<{ [k: string]: any } | null> {
-    const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/history?`
+    const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/history?`;
     try {
-        const response = await axios.get(url)
-        return response.data
+        const response = await axios.get(url);
+        return response.data;
     } catch (error) {
         // handleAxiosError(error)
-        return null
+        return null;
     }
 }

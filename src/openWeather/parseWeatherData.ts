@@ -1,20 +1,29 @@
 import { WeatherDto } from '../models/weatherDto';
-import { HourlyDataBlock } from '../types';
-import { calcNearestHour, average, min, max } from './math';
+import { HourlyDataBlock, WeatherBlock } from '../types';
+import { calcNearestHour, average, min, max } from '../utils/math';
 
-export const condenseHourlyData = (
+export const filterOWMHourlyData = (
     hourly: HourlyDataBlock[],
     start: number,
     end: number
-): WeatherDto => {
-    const weatherDto = new WeatherDto();
+): HourlyDataBlock[] => {
     const startTime = calcNearestHour(start, 'start');
     const endTime = calcNearestHour(end, 'end');
-    const blocks = hourly.filter((block) => {
+    return hourly.filter((block) => {
         return block.dt > startTime && block.dt < endTime;
     });
+};
 
-    blocks.forEach((block) => {
+export const condenseHourlyData = (hourlyBlocks: HourlyDataBlock[]): WeatherDto => {
+    const weatherDto = new WeatherDto();
+    const conditions = new Set<string>();
+    const icons = new Set<number>();
+
+    hourlyBlocks.forEach((block) => {
+        block.weather.forEach(({ description, id }) => {
+            conditions.add(description);
+            icons.add(id);
+        });
         weatherDto.cloudCover = average(weatherDto.cloudCover, block.clouds);
         weatherDto.dewPoint = average(weatherDto.dewPoint, block.dew_point);
         weatherDto.heatIndex =
@@ -39,6 +48,9 @@ export const condenseHourlyData = (
         weatherDto.windGust = max(weatherDto.windGust, block.wind_gust);
         weatherDto.windSpeed = max(weatherDto.windSpeed, block.wind_speed);
     });
+
+    weatherDto.conditions = Array.from(conditions);
+    weatherDto.icons = Array.from(icons);
 
     return weatherDto;
 };
