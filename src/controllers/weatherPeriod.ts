@@ -25,13 +25,12 @@ export const lambdaHandler = async (
     try {
         if (!event.body) throw new RequestError('Request Body Required');
         const params = parseWeatherPeriodParams(JSON.parse(event.body));
-        // const weatherData = await weatherPeriod(params);
+        const weatherData = await weatherPeriod(params);
         return {
             statusCode: 200,
-            body: params,
+            body: weatherData,
         };
     } catch (err: any) {
-        console.log(err);
         if (err instanceof CustomError) {
             return {
                 statusCode: err.statusCode,

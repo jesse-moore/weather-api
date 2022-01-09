@@ -1,0 +1,55 @@
+{
+	"__START__": "Saturday, January 8, 2022 18:00:00 GMT-06:00",
+	"__END__": "Saturday, January 8, 2022 18:00:00 GMT-06:00",
+	"__CURRENT__": "Saturday, January 8, 2022 18:25:00 GMT-06:00",
+	"lat": 36.1967,
+	"lon": -94.1417,
+	"timezone": "America/Chicago",
+	"timezone_offset": -21600,
+	"current": {
+		"dt": 1641687900,
+		"sunrise": 1641648480,
+		"sunset": 1641683892,
+		"temp": 10.36,
+		"feels_like": 9.96,
+		"pressure": 1013,
+		"humidity": 96,
+		"dew_point": 9.75,
+		"uvi": 0,
+		"clouds": 90,
+		"visibility": 10000,
+		"wind_speed": 5.81,
+		"wind_deg": 190,
+		"weather": [
+			{
+				"id": 500,
+				"main": "Rain",
+				"description": "light rain",
+				"icon": "10n"
+			}
+		]
+	},
+	"hourly": [
+		{
+			"dt": 1641686400,
+			"temp": 10.1,
+			"feels_like": 9.67,
+			"pressure": 1013,
+			"humidity": 96,
+			"dew_point": 9.49,
+			"uvi": 0,
+			"clouds": 90,
+			"visibility": 10000,
+			"wind_speed": 5.81,
+			"wind_deg": 190,
+			"weather": [
+				{
+					"id": 500,
+					"main": "Rain",
+					"description": "light rain",
+					"icon": "10n"
+				}
+			]
+		}
+	]
+}

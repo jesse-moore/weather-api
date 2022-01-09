@@ -1,8 +1,7 @@
 module.exports = function (wallaby) {
-    const path = require('path')
+    const path = require('path');
     process.env.NODE_PATH +=
-        path.delimiter +
-        path.join(wallaby.localProjectDir, 'node_modules')
+        path.delimiter + path.join(wallaby.localProjectDir, 'node_modules');
     return {
         files: ['src/**/*.*', './test/data/*.*'],
 
@@ -10,18 +9,22 @@ module.exports = function (wallaby) {
         env: {
             type: 'node',
             runner: 'node',
+            params: {
+                env: "OPEN_WEATHER_MAP_KEY=testing",
+            },
         },
         setup: (wallaby) => {
-            const chai = require('chai')
-            chai.should()
-            chai.use(require('sinon-chai'))
+            const chai = require('chai');
+            chai.use(require('sinon-chai'));
+            chai.use(require('chai-as-promised'));
             // chai.use(require('chai-like'));
+            chai.should();
 
-            global.expect = require('chai').expect
+            global.expect = require('chai').expect;
         },
         testFramework: 'mocha',
         filesWithNoCoverageCalculated: [],
         runMode: 'onsave',
         trace: true,
-    }
-}
+    };
+};

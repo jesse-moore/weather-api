@@ -1,5 +1,5 @@
 import { WeatherDto } from '../models/weatherDto';
-import { HourlyDataBlock, WeatherBlock } from '../types';
+import { HourlyDataBlock } from '../types';
 import { calcNearestHour, average, min, max } from '../utils/math';
 
 export const filterOWMHourlyData = (
@@ -8,9 +8,8 @@ export const filterOWMHourlyData = (
     end: number
 ): HourlyDataBlock[] => {
     const startTime = calcNearestHour(start, 'start');
-    const endTime = calcNearestHour(end, 'end');
     return hourly.filter((block) => {
-        return block.dt > startTime && block.dt < endTime;
+        return block.dt > startTime && block.dt <= end;
     });
 };
 

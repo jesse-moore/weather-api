@@ -1,5 +1,6 @@
 import { openWeather } from '../services/axios';
 import { HourlyDataBlock, IWeatherPeriodParams } from '../types';
+import { ServerError } from '../utils/ServerError';
 
 export const fetchWeather = async (
     params: IWeatherPeriodParams
@@ -8,24 +9,34 @@ export const fetchWeather = async (
     const hourlyData: HourlyDataBlock[] = [];
     try {
         const response = await openWeather.get('', {
-            params: { dt, lat, lon },
+            params: { dt: dtEnd, lat, lon },
         });
 
         if (response.data.hourly) {
-            hourlyData.push(response.data.hourly);
+            hourlyData.push(...response.data.hourly);
         }
 
-        const lastHourBlockTime = hourlyData[hourlyData.length - 1].dt;
+        if (response.data.current) {
+            hourlyData.push(response.data.current);
+        }
 
-        if (dtEnd - 1800 > lastHourBlockTime) {
+        const firstHourBlockTime = hourlyData[0].dt;
+
+        if (dt < firstHourBlockTime) {
             const additionalResponse = await openWeather.get('', {
-                params: { dt: lastHourBlockTime + 3600, lat, lon },
+                params: { dt, lat, lon },
             });
-            hourlyData.push(additionalResponse.data.hourly);
+            hourlyData.push(...additionalResponse.data.hourly);
+            hourlyData.push(additionalResponse.data.current);
         }
 
         return hourlyData;
     } catch (error) {
-        return [];
+        const { response }: any = error;
+        if (response && response.data && response.data.message) {
+            throw new ServerError(response.data.message);
+        } else {
+            throw new ServerError('Server Error');
+        }
     }
 };
