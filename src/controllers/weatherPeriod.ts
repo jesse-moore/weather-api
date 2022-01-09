@@ -28,7 +28,7 @@ export const lambdaHandler = async (
         const weatherData = await weatherPeriod(params);
         return {
             statusCode: 200,
-            body: weatherData,
+            body: JSON.stringify(weatherData),
         };
     } catch (err: any) {
         if (err instanceof CustomError) {

@@ -29,10 +29,10 @@ describe('handler', () => {
     it('should return correct response', async () => {
         const event = _event as unknown as APIGatewayEvent;
         const context = {} as unknown as APIGatewayEventRequestContext;
-        serviceStub.onFirstCall().returns('data');
+        serviceStub.onFirstCall().returns({ data: 'data' });
         const result = await lambdaHandler(event, context);
         expect(result.statusCode).to.equal(200);
-        expect(result.body).to.equal('data');
+        expect(result.body).to.equal('{"data":"data"}');
     });
     it('should response with error response for missing request body', async () => {
         const event = {} as unknown as APIGatewayEvent;
